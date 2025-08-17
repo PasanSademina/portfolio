@@ -1,0 +1,553 @@
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ body {
+     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+     background: url('M3-MacBook-Pro-Wallpaper-8K.png');
+        background-size: cover;
+     height: 100vh;
+     overflow: hidden;
+ }
+
+ /* Custom Cursor */
+ .custom-cursor {
+     position: fixed;
+     width: 20px;
+     height: 20px;
+     background: white;
+     border: 2px solid black;
+     border-radius: 0 0 0 10px;
+     transform: rotate(-45deg);
+     pointer-events: none;
+     z-index: 10000;
+     transition: all 0.1s ease;
+ }
+
+ .custom-cursor.clicking {
+     transform: rotate(-45deg) scale(0.8);
+ }
+
+ /* Boot Screen */
+ .boot-screen {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: #000;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     z-index: 9999;
+     transition: opacity 1s ease;
+ }
+
+ .apple-logo {
+     font-size: 80px;
+     color: white;
+     margin-bottom: 30px;
+     animation: pulse 2s infinite;
+ }
+
+ .boot-text {
+     color: #888;
+     font-size: 18px;
+     margin-bottom: 20px;
+ }
+
+ .loading-bar {
+     width: 300px;
+     height: 4px;
+     background: #333;
+     border-radius: 2px;
+     overflow: hidden;
+ }
+
+ .loading-progress {
+     height: 100%;
+     background: linear-gradient(90deg, #007AFF, #5856D6);
+     width: 0%;
+     animation: loading 3s ease-in-out forwards;
+ }
+
+ @keyframes pulse {
+
+     0%,
+     100% {
+         opacity: 0.8;
+     }
+
+     50% {
+         opacity: 1;
+     }
+ }
+
+ @keyframes loading {
+     0% {
+         width: 0%;
+     }
+
+     100% {
+         width: 100%;
+     }
+ }
+
+ /* Start Button */
+ .start-screen {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: rgba(0, 0, 0, 0.9);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     z-index: 9998;
+     opacity: 0;
+     pointer-events: none;
+     transition: opacity 0.5s ease;
+ }
+
+ .start-screen.show {
+     opacity: 1;
+     pointer-events: all;
+ }
+
+ .power-button {
+     width: 100px;
+     height: 100px;
+     border-radius: 50%;
+     background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+     border: none;
+     color: #007AFF;
+     font-size: 40px;
+     cursor: pointer;
+     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+     transition: all 0.3s ease;
+ }
+
+ .power-button:hover {
+     transform: scale(1.1);
+     box-shadow: 0 12px 40px rgba(0, 122, 255, 0.3);
+ }
+
+ /* Desktop */
+ .desktop {
+     width: 100%;
+     height: 100vh;
+     background: url('');
+     position: relative;
+     opacity: 0;
+     transition: opacity 1s ease;
+ }
+
+ .desktop.show {
+     opacity: 1;
+ }
+
+ /* Menu Bar */
+ .menu-bar {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 30px;
+     background: rgba(0, 0, 0, 0.8);
+     backdrop-filter: blur(20px);
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 0 15px;
+     z-index: 1000;
+     font-size: 14px;
+     color: white;
+ }
+
+ .menu-left {
+     display: flex;
+     align-items: center;
+     gap: 15px;
+ }
+
+ .menu-right {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+ }
+
+ /* Dock */
+ .dock {
+     position: fixed;
+     bottom: 10px;
+     left: 50%;
+     transform: translateX(-50%);
+     background: rgba(255, 255, 255, 0.1);
+     backdrop-filter: blur(20px);
+     border-radius: 15px;
+     padding: 10px;
+     display: flex;
+     gap: 10px;
+     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+     z-index: 1000;
+ }
+
+ .dock-item {
+     width: 60px;
+     height: 60px;
+     border-radius: 15px;
+     background: linear-gradient(145deg, #ffffff21, #0000002c);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: white;
+     font-size: 24px;
+     cursor: pointer;
+     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+     position: relative;
+     overflow: hidden;
+ }
+
+ .dock-item:hover {
+     transform: translateY(-10px) scale(1.1);
+ }
+
+ .dock-item::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+     opacity: 0;
+     transition: opacity 0.3s ease;
+ }
+
+ .dock-item:hover::before {
+     opacity: 1;
+ }
+
+ /* Profile Picture - Desktop Icon Style */
+ .profile-pic {
+     position: fixed;
+     top: 70px;
+     right: 50px;
+     width: 100px;
+     height: 100px;
+     border-radius: 15px;
+     background-image: url('macos-monterey-stock-black-dark-mode-layers-5k-6016x6016-5889.jpg');
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: white;
+     font-size: 36px;
+     font-weight: bold;
+     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.11);
+     cursor: pointer;
+     transition: all 0.2s ease;
+     z-index: 500;
+     user-select: none;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+     pointer-events: all;
+     border: 3px solid rgba(255, 255, 255, 0.2);
+ }
+
+ .profile-pic:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+     border-color: rgba(255, 255, 255, 0.4);
+ }
+
+ .profile-pic:active {
+     transform: translateY(0px);
+     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+ }
+
+ .profile-pic::after {
+     content: 'Pasan';
+     position: absolute;
+     bottom: -25px;
+     left: 50%;
+     transform: translateX(-50%);
+     color: white;
+     font-size: 12px;
+     font-weight: 500;
+     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+     white-space: nowrap;
+ }
+
+ /* Windows */
+ .window {
+     position: absolute;
+     background: rgba(255, 255, 255, 0.685);
+     backdrop-filter: blur(20px);
+     border-radius: 12px;
+     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.103);
+     overflow: hidden;
+     transition: all 0.3s ease;
+     opacity: 0;
+     transform: scale(0.8);
+     pointer-events: none;
+     width: 500px;
+     height: 400px;
+ }
+
+ .window.show {
+     opacity: 1;
+     transform: scale(1);
+     pointer-events: all;
+ }
+
+ .window-header {
+     background: rgba(0, 0, 0, 0.05);
+     padding: 10px 15px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+ }
+
+ .window-controls {
+     display: flex;
+     gap: 8px;
+ }
+
+ .window-control {
+     width: 12px;
+     height: 12px;
+     border-radius: 50%;
+     cursor: pointer;
+     transition: all 0.2s ease;
+ }
+
+ .close {
+     background: #FF5F57;
+ }
+
+ .minimize {
+     background: #FFBD2E;
+ }
+
+ .maximize {
+     background: #28CA42;
+ }
+
+ .window-control:hover {
+     transform: scale(1.2);
+ }
+
+ .window-title {
+     font-weight: 600;
+     color: #333;
+ }
+
+ .window-content {
+     padding: 20px;
+     max-height: 500px;
+     overflow-y: auto;
+ }
+
+ /* Content Styles */
+ .about-content h2 {
+     color: #007AFF;
+     margin-bottom: 15px;
+     display: flex;
+     align-items: center;
+     gap: 10px;
+ }
+
+ .about-content p {
+     margin-bottom: 15px;
+     line-height: 1.6;
+     color: #333;
+ }
+
+ .contact-info {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+     gap: 15px;
+     margin-top: 20px;
+ }
+
+ .contact-item {
+     padding: 15px;
+     background: rgba(0, 122, 255, 0.1);
+     border-radius: 10px;
+     display: flex;
+     align-items: center;
+     gap: 10px;
+ }
+
+ .skills-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+     gap: 15px;
+     margin-top: 20px;
+ }
+
+ .skill-category {
+     padding: 15px;
+     background: rgba(0, 0, 0, 0.05);
+     border-radius: 10px;
+ }
+
+ .skill-category h4 {
+     color: #007AFF;
+     margin-bottom: 10px;
+ }
+
+ .experience-item {
+     padding: 20px;
+     background: rgba(0, 0, 0, 0.05);
+     border-radius: 10px;
+     margin-bottom: 15px;
+ }
+
+ .experience-item h4 {
+     color: #007AFF;
+     margin-bottom: 5px;
+ }
+
+ .experience-item .company {
+     font-weight: 600;
+     color: #666;
+     margin-bottom: 5px;
+ }
+
+ .experience-item .period {
+     color: #888;
+     font-size: 14px;
+     margin-bottom: 10px;
+ }
+
+ .social-links {
+     display: flex;
+     gap: 15px;
+     margin-top: 20px;
+     justify-content: center;
+ }
+
+ .social-link {
+     width: 50px;
+     height: 50px;
+     border-radius: 12px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: white;
+     font-size: 20px;
+     text-decoration: none;
+     transition: all 0.3s ease;
+ }
+
+ .social-link:hover {
+     transform: translateY(-3px) scale(1.1);
+ }
+
+ .facebook {
+     background: #1877F2;
+ }
+
+ .linkedin {
+     background: #0A66C2;
+ }
+
+ .instagram {
+     background: linear-gradient(45deg, #F56040, #E91E63, #9C27B0);
+ }
+
+ .github {
+     background: #333;
+ }
+
+ /* Responsive */
+ @media (max-width: 768px) {
+     .dock {
+         flex-wrap: wrap;
+         max-width: 90vw;
+     }
+
+     .dock-item {
+         width: 50px;
+         height: 50px;
+         font-size: 20px;
+     }
+
+     .window {
+         width: 95vw !important;
+         height: 80vh !important;
+         top: 10vh !important;
+         left: 2.5vw !important;
+     }
+
+     .profile-pic {
+         width: 80px;
+         height: 80px;
+         font-size: 28px;
+         top: 50px;
+         right: 20px;
+     }
+
+     .profile-pic::after {
+         font-size: 11px;
+         bottom: -22px;
+     }
+ }
+
+ .education-item {
+     padding: 15px;
+     background: rgba(0, 0, 0, 0.05);
+     border-radius: 10px;
+     margin-bottom: 15px;
+ }
+
+ .education-item h4 {
+     color: #007AFF;
+     margin-bottom: 5px;
+ }
+
+ .floating-particles {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     pointer-events: none;
+     z-index: -1;
+ }
+
+ .particle {
+     position: absolute;
+     width: 4px;
+     height: 4px;
+     background: rgba(255, 255, 255, 0.3);
+     border-radius: 50%;
+     animation: float 6s infinite linear;
+ }
+
+ @keyframes float {
+     0% {
+         transform: translateY(100vh) rotate(0deg);
+         opacity: 0;
+     }
+
+     10% {
+         opacity: 1;
+     }
+
+     90% {
+         opacity: 1;
+     }
+
+     100% {
+         transform: translateY(-100px) rotate(360deg);
+         opacity: 0;
+     }
+ }

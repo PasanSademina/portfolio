@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasan's Computer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="custom-cursor" style="display: none;"></div>
+
+    <!-- Boot Screen -->
+    <div class="boot-screen" id="bootScreen">
+        <div class="apple-logo">
+            <i class="fab fa-apple"></i>
+        </div>
+        <div class="boot-text">Pasan's Computer is starting...</div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <!-- Start Screen -->
+    <div class="start-screen" id="startScreen">
+        <button class="power-button" onclick="startComputer()">
+            <i class="fas fa-power-off"></i>
+        </button>
+    </div>
+
+    <!-- Desktop -->
+    <div class="desktop" id="desktop">
+        <!-- Floating Particles -->
+        <div class="floating-particles" id="particles"></div>
+
+        <!-- Menu Bar -->
+        <div class="menu-bar">
+            <div class="menu-left">
+                <i class="fab fa-apple"></i>
+                <span>Pasan's Portfolio</span>
+            </div>
+            <div class="menu-right">
+                <span id="currentTime">12:00 PM</span>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-full"></i>
+            </div>
+        </div>
+
+        <!-- Profile Picture -->
+        <div class="profile-pic" onclick="openWindow('about')">
+            PA
+        </div>
+
+        <!-- Dock -->
+        <div class="dock">
+            <div class="dock-item" onclick="openWindow('about')" title="About Me">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="dock-item" onclick="openWindow('skills')" title="Skills">
+                <i class="fas fa-code"></i>
+            </div>
+            <div class="dock-item" onclick="openWindow('experience')" title="Experience">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <div class="dock-item" onclick="openWindow('education')" title="Education">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="dock-item" onclick="openWindow('social')" title="Social Media">
+                <i class="fas fa-share-alt"></i>
+            </div>
+        </div>
+
+        <!-- Windows -->
+        <!-- About Window -->
+        <div class="window" id="aboutWindow">
+            <div class="window-header">
+                <div class="window-controls">
+                    <div class="window-control close" onclick="closeWindow('about')"></div>
+                    <div class="window-control minimize" onclick="minimizeWindow('about')"></div>
+                    <div class="window-control maximize" onclick="maximizeWindow('about')"></div>
+                </div>
+                <div class="window-title">About Pasan</div>
+                <div></div>
+            </div>
+            <div class="window-content">
+                <div class="about-content">
+                    <h2><i class="fas fa-user-circle"></i> Professional Summary</h2>
+                    <p>An undergraduate Software Engineer with over 2 years of experience as a Quality Assurance Technician, including 1 year as a Deputy Team Leader. Proven ability to work remotely, manage software testing processes, ensure software quality, and meet deadlines. Strong focus on teamwork, detail orientation, and reliability.</p>
+                    
+                    <h2><i class="fas fa-info-circle"></i> Personal Details</h2>
+                    <p><strong>Name:</strong> H.M.T.P.S Abeywardhna</p>
+                    <p><strong>Date of Birth:</strong> 28th July 2001</p>
+                    <p><strong>Age:</strong> 24 Years (2025)</p>
+                    <p><strong>Nationality:</strong> Sri Lankan</p>
+                    <p><strong>Languages:</strong> Sinhala (Native), English (Professional Proficiency)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Window -->
+        <div class="window" id="skillsWindow">
+            <div class="window-header">
+                <div class="window-controls">
+                    <div class="window-control close" onclick="closeWindow('skills')"></div>
+                    <div class="window-control minimize" onclick="minimizeWindow('skills')"></div>
+                    <div class="window-control maximize" onclick="maximizeWindow('skills')"></div>
+                </div>
+                <div class="window-title">Technical Skills</div>
+                <div></div>
+            </div>
+            <div class="window-content">
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4><i class="fas fa-laptop-code"></i> Technical Skills</h4>
+                        <p>Java, SQL, PHP, HTML, CSS, JavaScript, Git</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-brain"></i> Analytical Skills</h4>
+                        <p>Java programming, ICT knowledge, system analysis, hands-on development</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-users"></i> Team Leadership</h4>
+                        <p>1 year of experience leading a remote QA team, task delegation and conflict resolution</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-heart"></i> Soft Skills</h4>
+                        <p>Strong communication, adaptability, time management, and teamwork</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-book"></i> Currently Learning</h4>
+                        <p>React.js and Android Development</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience Window -->
+        <div class="window" id="experienceWindow">
+            <div class="window-header">
+                <div class="window-controls">
+                    <div class="window-control close" onclick="closeWindow('experience')"></div>
+                    <div class="window-control minimize" onclick="minimizeWindow('experience')"></div>
+                    <div class="window-control maximize" onclick="maximizeWindow('experience')"></div>
+                </div>
+                <div class="window-title">Professional Experience</div>
+                <div></div>
+            </div>
+            <div class="window-content">
+                <div class="experience-item">
+                    <h4>Operator</h4>
+                    <div class="company">Global System Solutions International (Pvt) Ltd</div>
+                    <div class="period">2022 - 2024</div>
+                    <p>Managed large volumes of data entry tasks with high accuracy and speed across digital platforms. Ensured the integrity and consistency of client information while adhering to project deadlines. Collaborated with remote teams to support digital operations and maintain smooth workflow processes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Window -->
+        <div class="window" id="educationWindow">
+            <div class="window-header">
+                <div class="window-controls">
+                    <div class="window-control close" onclick="closeWindow('education')"></div>
+                    <div class="window-control minimize" onclick="minimizeWindow('education')"></div>
+                    <div class="window-control maximize" onclick="maximizeWindow('education')"></div>
+                </div>
+                <div class="window-title">Education</div>
+                <div></div>
+            </div>
+            <div class="window-content">
+                <div class="education-item">
+                    <h4><i class="fas fa-graduation-cap"></i> Bachelor of Software Engineering</h4>
+                    <div class="company">Java Institute Advanced Technology</div>
+                    <div class="period">2023</div>
+                    <p>Developed strong programming skills in Java and a passion for efficient, user-friendly applications.</p>
+                </div>
+                <div class="education-item">
+                    <h4><i class="fas fa-certificate"></i> G.C.E A/L Examination</h4>
+                    <div class="company">St. Thomas College Matale</div>
+                    <div class="period">2017 - 2020</div>
+                    <p>Completed Advanced Level in Technology stream with a B in Science for Technology (SFT), and C passes in ICT and Engineering Technology.</p>
+                </div>
+                <div class="education-item">
+                    <h4><i class="fas fa-comments"></i> Spoken English Certification</h4>
+                    <div class="company">Training Institute of Human Resource Management</div>
+                    <p>Improved communication skills, fluency, and confidence in professional settings.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Window -->
+
+
+        <!-- Social Media Window -->
+        <div class="window" id="socialWindow">
+            <div class="window-header">
+                <div class="window-controls">
+                    <div class="window-control close" onclick="closeWindow('social')"></div>
+                    <div class="window-control minimize" onclick="minimizeWindow('social')"></div>
+                    <div class="window-control maximize" onclick="maximizeWindow('social')"></div>
+                </div>
+                <div class="window-title">Social Media</div>
+                <div></div>
+            </div>
+            <div class="window-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Phone</strong><br>
+                            +94 76 075 58 47
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong><br>
+                            k12905.pasan@gmail.com
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Address</strong><br>
+                            No 178 Kandy Road, Matale, Sri Lanka
+                        </div>
+                    </div>
+                </div>
+                <h2 style="text-align: center; margin-bottom: 20px; color: #007AFF;">
+                    <i class="fas fa-share-alt"></i> Connect with me
+                </h2>
+                <div class="social-links">
+                    <a href="https://web.facebook.com/profile.php?id=61553873102573" target="_blank" class="social-link facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/pasan-abeywardhna-911013264" target="_blank" class="social-link linkedin">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.instagram.com/pasan_sademina" target="_blank" class="social-link instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://github.com/PasanSademina" target="_blank" class="social-link github">
+                        <i class="fab fa-github"></i>
+                    </a>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <script  src="script.js"></script>
+</body>
+</html>
